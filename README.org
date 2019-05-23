@@ -1,2 +1,75 @@
-#+TITLE: cub-interactive
+#+TITLE: cub-interactive.el
 
+Extend the Emacs interactive command.
+
+* Installation
+
+It's unavailable on Melpa. Please install from [[https://sximada.github.io/cubelpa-repo/packages/][cubelpa]].
+
+cubelpa setting:
+
+#+BEGIN_EXAMPLE
+(require 'package)
+(add-to-list 'package-archives '("cubelpa" . "https://sximada.github.io/cubelpa-repo/packages/") t)
+(package-initialize)
+#+END_EXAMPLE
+
+Installation:
+
+#+BEGIN_EXAMPLE
+M-x package-install cub-interactive
+#+END_EXAMPLE
+
+* Functions
+
+** cub-interactive - Get command arguments nicely
+
+When entering interactive commands, the following input methods are often used.
+
+- It is passed as an argument of the function.
+- A string of the range marked as a region is passed.
+- Wait for input interactively on the mini-buffer.
+
+It will to get the arguments for these cases well.
+
+For example, define the following function:
+
+#+BEGIN_SRC emacs-lisp :results none
+(defun your-interactive-function (&optional line)
+  (interactive (list (cub-interactive)))
+  line)
+#+END_SRC
+
+It tries to get the arguments in the following three order:
+
+1. It is passed as an argument of the function:
+
+   #+BEGIN_SRC emacs-lisp :results scalar
+   (your-interactive-function "OK")
+   #+END_SRC
+
+   #+RESULTS:
+   : "OK"
+
+   This expression return "OK".
+
+2. A string of the range marked as a region is passed:
+
+   If you mark the text and execute =M-x your-interactive-function= the marked string will be passed as the argument of your-interactive-function.
+
+   #+BEGIN_EXAMPLE
+   ABCDE
+   FGHIJ
+   KLMNO
+   #+END_EXAMPLE
+
+   Mark the second line above and execute =M-x your-interactive-function= is equivalent to the formula below.
+
+   #+BEGIN_SRC emacs-lisp :results scalar
+   (your-interactive-function "FGHIJ")
+   #+END_SRC
+
+   #+RESULTS:
+   : "FGHIJ"
+
+3. If it is other than 1 and 2, wait for input in Mini buffer.
