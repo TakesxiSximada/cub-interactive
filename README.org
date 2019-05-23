@@ -34,7 +34,7 @@ It will to get the arguments for these cases well.
 
 For example, define the following function:
 
-#+BEGIN_SRC emacs-lisp :results none
+#+BEGIN_SRC emacs-lisp :results none :exports code
 (defun your-interactive-function (&optional line)
   (interactive (list (cub-interactive)))
   line)
@@ -44,7 +44,7 @@ It tries to get the arguments in the following three order:
 
 1. It is passed as an argument of the function:
 
-   #+BEGIN_SRC emacs-lisp :results scalar
+   #+BEGIN_SRC emacs-lisp :results scalar :exports both
    (your-interactive-function "OK")
    #+END_SRC
 
@@ -65,7 +65,7 @@ It tries to get the arguments in the following three order:
 
    Mark the second line above and execute =M-x your-interactive-function= is equivalent to the formula below.
 
-   #+BEGIN_SRC emacs-lisp :results scalar
+   #+BEGIN_SRC emacs-lisp :results scalar :exports both
    (your-interactive-function "FGHIJ")
    #+END_SRC
 
