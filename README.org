@@ -6,7 +6,7 @@ Extend the Emacs interactive command.
 
 It's unavailable on Melpa. Please install from [[https://sximada.github.io/cubelpa-repo/packages/][cubelpa]].
 
-cubelpa setting:
+cubelpa setting (See https://github.com/sximada/cubelpa-repo):
 
 #+BEGIN_EXAMPLE
 (require 'package)
